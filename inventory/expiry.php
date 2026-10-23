@@ -30,13 +30,14 @@ $rows = $stmt->fetchAll();
         $expiry = new DateTime($r['expiry_date']);
         $days = (int)$today->diff($expiry)->format('%r%a');
         $rowClass = $days < 0 ? 'expired' : 'soon';
+        $status = $days < 0 ? 'expired' : ($days <= 30 ? 'critical' : 'warning');
     ?>
         <tr class="<?php echo e($rowClass); ?>">
             <td><?php echo e($r['batch_no']); ?></td>
             <td><?php echo e($r['medicine_name']); ?></td>
             <td><?php echo (int)$r['available_qty']; ?></td>
             <td><?php echo e($r['expiry_date']); ?></td>
-            <td><span class="badge status-<?php echo e($r['status']); ?>"><?php echo e(ucfirst($r['status'])); ?></span></td>
+            <td><span class="badge status-<?php echo e($status); ?>"><?php echo e(ucfirst($status)); ?></span></td>
             <td><?php echo $days; ?></td>
         </tr>
     <?php endforeach; ?>

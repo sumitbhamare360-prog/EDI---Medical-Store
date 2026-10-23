@@ -52,7 +52,7 @@ $rows = $stmt->fetchAll();
             <td><?php echo e($r['generic_name'] ?? ''); ?></td>
             <td><?php echo e($r['category_name'] ?? ''); ?></td>
             <td><?php echo e((int)$r['requires_prescription'] ? 'Yes' : 'No'); ?></td>
-            <td><?php echo e(number_format($r['selling_price'], 2)); ?></td>
+            <td><?php echo e(number_format((float)($r['selling_price'] ?? 0), 2)); ?></td>
             <td><?php echo (int)$r['usable_stock']; ?></td>
             <td><?php echo (int)$r['reorder_level']; ?></td>
             <td><span class="badge status-<?php echo e($r['status']); ?>"><?php echo e(ucfirst($r['status'])); ?></span></td>

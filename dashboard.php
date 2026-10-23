@@ -19,11 +19,11 @@ $today_sales = $stmt->fetch();
 
 // KPI: low stock count (medicines where total non-expired usable qty <= reorder_level)
 $stmt = $pdo->prepare(
-    "SELECT COUNT(DISTINCT m.medicine_id) AS low_count
+    "SELECT m.medicine_id, m.reorder_level
      FROM medicines m
      LEFT JOIN batches b ON b.medicine_id = m.medicine_id AND b.available_qty > 0 AND b.expiry_date >= CURDATE()
      WHERE m.status='active'
-     GROUP BY m.medicine_id
+     GROUP BY m.medicine_id, m.reorder_level
      HAVING COALESCE(SUM(b.available_qty),0) <= m.reorder_level"
 );
 $stmt->execute();
@@ -73,7 +73,7 @@ $recent = $stmt->fetchAll();
 <div class="kpi-grid">
     <div class="kpi card">
         <div class="kpi-label">Today's Sales</div>
-        <div class="kpi-value"><?php echo e(number_format($today_sales['total_sales'], 2)); ?></div>
+        <div class="kpi-value"><?php echo e(number_format((float)($today_sales['total_sales'] ?? 0), 2)); ?></div>
         <div class="kpi-sub"><?php echo (int)$today_sales['inv_count']; ?> invoices</div>
     </div>
     <div class="kpi card">
@@ -114,7 +114,7 @@ $recent = $stmt->fetchAll();
             <td><?php echo e(date('Y-m-d H:i', strtotime($r['created_at']))); ?></td>
             <td><?php echo e(ucfirst($r['type'])); ?></td>
             <td><?php echo e($r['ref']); ?></td>
-            <td><?php echo e(number_format($r['amount'], 2)); ?></td>
+            <td><?php echo e(number_format((float)($r['amount'] ?? 0), 2)); ?></td>
         </tr>
     <?php endforeach; ?>
     <?php if (empty($recent)): ?>
@@ -122,4 +122,4 @@ $recent = $stmt->fetchAll();
     <?php endif; ?>
     </tbody>
 </table>
-<?php require_once __DIR__ . '/footer.php'; ?>
+<?php require_once __DIR__ . '/includes/footer.php'; ?>

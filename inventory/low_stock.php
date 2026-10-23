@@ -15,7 +15,7 @@ $stmt = $pdo->prepare("
     LEFT JOIN categories c ON c.category_id = m.category_id
     LEFT JOIN batches b ON b.medicine_id = m.medicine_id
     WHERE m.status='active'
-    GROUP BY m.medicine_id
+    GROUP BY m.medicine_id, m.name, m.generic_name, c.category_name, m.reorder_level
     HAVING usable_stock <= m.reorder_level
     ORDER BY m.name
 ");

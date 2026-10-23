@@ -10,8 +10,8 @@ require_once __DIR__ . '/../config/db.php';
  * Escape output for HTML to prevent XSS.
  * Use this whenever echoing user-provided or DB data.
  */
-function e(string $value = ''): string {
-    return htmlspecialchars($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+function e(string|int|float|null $value = ''): string {
+    return htmlspecialchars((string)($value ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
 
 /**
