@@ -16,8 +16,8 @@ $sql = "SELECT m.*, c.category_name,
             FROM batches b
             WHERE b.medicine_id = m.medicine_id
               AND b.available_qty > 0
-              AND b.expiry_date > CURDATE()
-              AND b.status='active') AS usable_stock
+              AND b.expiry_date >= CURDATE()
+             ) AS usable_stock
         FROM medicines m
         LEFT JOIN categories c ON c.category_id = m.category_id";
 $params = [];
