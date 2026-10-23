@@ -38,8 +38,16 @@ function get_flash(string $type): ?string {
  */
 function redirect(string $url): void {
     start_session();
-    $path = str_starts_with($url, '/') ? $url : (str_contains($url, '/') ? '/' . $url : rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? '/'), '/') . '/' . $url);
-    header("Location: " . BASE_URL . $path);
+    if (str_starts_with($url, 'http://') || str_starts_with($url, 'https://')) {
+        header("Location: " . $url);
+        exit;
+    }
+    if (str_starts_with($url, BASE_URL . '/')) {
+        header("Location: " . $url);
+        exit;
+    }
+    $target = ltrim($url, '/');
+    header("Location: " . BASE_URL . '/' . $target);
     exit;
 }
 

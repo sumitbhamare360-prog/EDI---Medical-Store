@@ -66,55 +66,55 @@ INSERT INTO suppliers (supplier_name, contact_person, phone, email, address, sta
 -- Batches (designed to prove business rules)
 -- Paracetamol 500mg (medicine_id=1): two valid batches different expiry -> FEFO demo
 INSERT INTO batches (medicine_id, batch_no, purchase_price, available_qty, expiry_date) VALUES
-(1, 'BATCH-PCT-001', 1.50, 50, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), 'active'),  -- expires later
-(1, 'BATCH-PCT-002', 1.40, 30, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 'active'),  -- expires earlier -> FEFO picks this first
+(1, 'BATCH-PCT-001', 1.50, 50, DATE_ADD(CURDATE(), INTERVAL 6 MONTH)),  -- expires later
+(1, 'BATCH-PCT-002', 1.40, 30, DATE_ADD(CURDATE(), INTERVAL 2 MONTH)),  -- expires earlier -> FEFO picks this first
 -- Amoxicillin 500mg (medicine_id=2): one expired batch
-(2, 'BATCH-AMX-001', 4.00, 20, DATE_SUB(CURDATE(), INTERVAL 10 DAY), 'expired'),   -- expired
+(2, 'BATCH-AMX-001', 4.00, 20, DATE_SUB(CURDATE(), INTERVAL 10 DAY)),   -- expired
 -- Vitamin C 1000mg (medicine_id=3): expiring within 30 days
-(3, 'BATCH-VIT-001', 2.50, 40, DATE_ADD(CURDATE(), INTERVAL 15 DAY), 'active'),    -- near expiry
+(3, 'BATCH-VIT-001', 2.50, 40, DATE_ADD(CURDATE(), INTERVAL 15 DAY)),    -- near expiry
 -- Omeprazole 20mg (medicine_id=5): low stock at/below reorder level (10)
-(5, 'BATCH-OME-001', 3.00, 8, DATE_ADD(CURDATE(), INTERVAL 8 MONTH), 'active'),    -- low stock (8 <= 10)
+(5, 'BATCH-OME-001', 3.00, 8, DATE_ADD(CURDATE(), INTERVAL 8 MONTH)),    -- low stock (8 <= 10)
 -- Hydrocortisone Cream (medicine_id=6): low stock (reorder 12)
-(6, 'BATCH-HYD-001', 3.50, 10, DATE_ADD(CURDATE(), INTERVAL 7 MONTH), 'active'),   -- low stock (10 <= 12)
+(6, 'BATCH-HYD-001', 3.50, 10, DATE_ADD(CURDATE(), INTERVAL 7 MONTH)),   -- low stock (10 <= 12)
 -- Ibuprofen 400mg (medicine_id=7): healthy stock
-(7, 'BATCH-IBU-001', 1.80, 60, DATE_ADD(CURDATE(), INTERVAL 1 YEAR), 'active'),
+(7, 'BATCH-IBU-001', 1.80, 60, DATE_ADD(CURDATE(), INTERVAL 1 YEAR)),
 -- Azithromycin 500mg (medicine_id=8): prescription, healthy
-(8, 'BATCH-AZI-001', 6.00, 25, DATE_ADD(CURDATE(), INTERVAL 9 MONTH), 'active'),
+(8, 'BATCH-AZI-001', 6.00, 25, DATE_ADD(CURDATE(), INTERVAL 9 MONTH)),
 -- Multivitamin (medicine_id=9)
-(9, 'BATCH-MUL-001', 4.50, 45, DATE_ADD(CURDATE(), INTERVAL 10 MONTH), 'active'),
+(9, 'BATCH-MUL-001', 4.50, 45, DATE_ADD(CURDATE(), INTERVAL 10 MONTH)),
 -- Cough Syrup (medicine_id=10)
-(10, 'BATCH-COU-001', 2.20, 55, DATE_ADD(CURDATE(), INTERVAL 11 MONTH), 'active'),
+(10, 'BATCH-COU-001', 2.20, 55, DATE_ADD(CURDATE(), INTERVAL 11 MONTH)),
 -- Loperamide 2mg (medicine_id=11)
-(11, 'BATCH-LOP-001', 1.60, 70, DATE_ADD(CURDATE(), INTERVAL 1 YEAR), 'active'),
+(11, 'BATCH-LOP-001', 1.60, 70, DATE_ADD(CURDATE(), INTERVAL 1 YEAR)),
 -- Aloe Vera Gel (medicine_id=12): low stock (reorder 10)
-(12, 'BATCH-ALO-001', 3.00, 9, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), 'active'),    -- low stock (9 <= 10)
+(12, 'BATCH-ALO-001', 3.00, 9, DATE_ADD(CURDATE(), INTERVAL 6 MONTH)),    -- low stock (9 <= 10)
 -- Aspirin 325mg (medicine_id=13)
-(13, 'BATCH-ASP-001', 1.00, 80, DATE_ADD(CURDATE(), INTERVAL 1 YEAR), 'active'),
+(13, 'BATCH-ASP-001', 1.00, 80, DATE_ADD(CURDATE(), INTERVAL 1 YEAR)),
 -- Ciprofloxacin 500mg (medicine_id=14): prescription, low stock (reorder 8)
-(14, 'BATCH-CIP-001', 5.00, 6, DATE_ADD(CURDATE(), INTERVAL 8 MONTH), 'active'),    -- low stock (6 <= 8)
+(14, 'BATCH-CIP-001', 5.00, 6, DATE_ADD(CURDATE(), INTERVAL 8 MONTH)),    -- low stock (6 <= 8)
 -- Vitamin D3 2000IU (medicine_id=15)
-(15, 'BATCH-VID-001', 5.50, 50, DATE_ADD(CURDATE(), INTERVAL 9 MONTH), 'active'),
+(15, 'BATCH-VID-001', 5.50, 50, DATE_ADD(CURDATE(), INTERVAL 9 MONTH)),
 -- Paracetamol Cold (medicine_id=16)
-(16, 'BATCH-COL-001', 2.00, 65, DATE_ADD(CURDATE(), INTERVAL 10 MONTH), 'active'),
+(16, 'BATCH-COL-001', 2.00, 65, DATE_ADD(CURDATE(), INTERVAL 10 MONTH)),
 -- Simethicone (medicine_id=17)
-(17, 'BATCH-SIM-001', 2.40, 40, DATE_ADD(CURDATE(), INTERVAL 9 MONTH), 'active'),
+(17, 'BATCH-SIM-001', 2.40, 40, DATE_ADD(CURDATE(), INTERVAL 9 MONTH)),
 -- Clotrimazole Cream (medicine_id=18)
-(18, 'BATCH-CLO-001', 3.20, 45, DATE_ADD(CURDATE(), INTERVAL 8 MONTH), 'active'),
+(18, 'BATCH-CLO-001', 3.20, 45, DATE_ADD(CURDATE(), INTERVAL 8 MONTH)),
 -- Naproxen 250mg (medicine_id=19)
-(19, 'BATCH-NAP-001', 2.10, 55, DATE_ADD(CURDATE(), INTERVAL 1 YEAR), 'active'),
+(19, 'BATCH-NAP-001', 2.10, 55, DATE_ADD(CURDATE(), INTERVAL 1 YEAR)),
 -- Doxycycline 100mg (medicine_id=20): prescription
-(20, 'BATCH-DOX-001', 4.80, 30, DATE_ADD(CURDATE(), INTERVAL 9 MONTH), 'active'),
+(20, 'BATCH-DOX-001', 4.80, 30, DATE_ADD(CURDATE(), INTERVAL 9 MONTH)),
 -- Calcium 500mg (medicine_id=21)
-(21, 'BATCH-CAL-001', 2.80, 60, DATE_ADD(CURDATE(), INTERVAL 1 YEAR), 'active'),
+(21, 'BATCH-CAL-001', 2.80, 60, DATE_ADD(CURDATE(), INTERVAL 1 YEAR)),
 -- Lozenges (medicine_id=22)
-(22, 'BATCH-LOZ-001', 1.90, 50, DATE_ADD(CURDATE(), INTERVAL 1 YEAR), 'active'),
+(22, 'BATCH-LOZ-001', 1.90, 50, DATE_ADD(CURDATE(), INTERVAL 1 YEAR)),
 -- Domperidone 10mg (medicine_id=23)
-(23, 'BATCH-DOM-001', 2.60, 40, DATE_ADD(CURDATE(), INTERVAL 10 MONTH), 'active'),
+(23, 'BATCH-DOM-001', 2.60, 40, DATE_ADD(CURDATE(), INTERVAL 10 MONTH)),
 -- Sunscreen SPF 50 (medicine_id=24): low stock (reorder 10)
-(24, 'BATCH-SUN-001', 7.00, 8, DATE_ADD(CURDATE(), INTERVAL 7 MONTH), 'active'),    -- low stock (8 <= 10)
+(24, 'BATCH-SUN-001', 7.00, 8, DATE_ADD(CURDATE(), INTERVAL 7 MONTH)),    -- low stock (8 <= 10)
 -- Paracetamol 650mg (medicine_id=25): FEFO demo medicine (two batches)
-(25, 'BATCH-PCT650-001', 1.80, 25, DATE_ADD(CURDATE(), INTERVAL 5 MONTH), 'active'),
-(25, 'BATCH-PCT650-002', 1.70, 20, DATE_ADD(CURDATE(), INTERVAL 1 MONTH), 'active'); -- expires earlier
+(25, 'BATCH-PCT650-001', 1.80, 25, DATE_ADD(CURDATE(), INTERVAL 5 MONTH)),
+(25, 'BATCH-PCT650-002', 1.70, 20, DATE_ADD(CURDATE(), INTERVAL 1 MONTH)); -- expires earlier
 
 -- Purchase Orders
 INSERT INTO purchase_orders (supplier_id, po_no, status, created_at) VALUES

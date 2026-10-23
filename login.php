@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$username]);
             $user = $stmt->fetch();
             if ($user && password_verify($password, $user['password']) && $user['status'] === 'active') {
-                require_once __DIR__ . '/auth.php';
+                require_once __DIR__ . '/includes/auth.php';
                 set_logged_in((int)$user['user_id'], $user['username'], $user['role_name']);
                 redirect('dashboard.php');
             } else {
